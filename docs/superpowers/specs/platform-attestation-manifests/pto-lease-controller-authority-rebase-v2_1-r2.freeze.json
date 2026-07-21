@@ -1,0 +1,22 @@
+{
+  "artifact_type": "PTO_LEASE_CONTROLLER_PLATFORM_ATTESTATION_FREEZE_RECORD",
+  "schema_version": "2.1",
+  "freeze_status": "FROZEN",
+  "predicate_path": "docs/superpowers/specs/platform-attestation-manifests/pto-lease-controller-authority-rebase-v2_1-r2.predicate.json",
+  "predicate_raw_sha256": "992213a7795bf0854427db7bb49549147389ead9f8dd55e9be4dcbb538013bae",
+  "predicate_jcs_sha256": "204178cc59a90a754d9e54405b868d118aac05e4e7aee0fde144fb662b3fafca",
+  "subject_attestation_request_raw_sha256": "4df9bc29d6e200c1d8d92202984ca0336de4c4f6459952de728e399934d25096",
+  "repository": "gaoyi0526-boop/ouyue-platform-attestations",
+  "repository_id": 1307678378,
+  "workflow_identity": "gaoyi0526-boop/ouyue-platform-attestations/.github/workflows/platform-lease-attestation.yml",
+  "source_commit": "f9d7299c6973c164a02f252e1ea61fa7d985af92",
+  "nonce_sha256": "162d359f1bf4a33966bb4e530463f2e06faf7d95cc85df1f5006c5b78744195a",
+  "platform_identity": "github-actions:1307678378:gaoyi0526-boop/ouyue-platform-attestations/.github/workflows/platform-lease-attestation.yml@refs/heads/main",
+  "trusted_root_epoch": 1,
+  "trusted_root_set_sha256": "65ca537f6ed8a47fd0e560c421baa1f6c1efb8b25fc200d8c5c02c0e92eb2b9c",
+  "replay_key": "7d23699686f724120caed54639c31c0744c3a55439d9b73192e3159f5604e0dc",
+  "authorization_expires_at": "2026-07-28T13:15:00Z",
+  "formal_attestation_signing_authorized": true,
+  "lease_creation_authorized": false,
+  "state_advance_authorized": false
+}

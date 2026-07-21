@@ -35,6 +35,10 @@ FINGERPRINT_EVENT_SHA = (
     "f6af77088620e63dd3261fd55abc639bcf6faebb5cdf585294819e6a754fbc5d"
 )
 EVIDENCE_EPOCH = "PTO_LEASE_CONTROLLER_CANDIDATE_KEY_EPOCH_20260719_01"
+SIGNING_EVENT_IDS = (
+    "OWNER-AUTHORIZE-PLATFORM-ATTESTATION-SIGNING-20260721-01",
+    "OWNER-AUTHORIZE-PLATFORM-ATTESTATION-SIGNING-20260721-02",
+)
 
 INPUTS_V21_FIELDS = (
     "artifact_type", "schema_version", "allowed_actions", "allowed_paths",
@@ -194,7 +198,6 @@ def validate_signing_event_v21(
     constants = {
         "artifact_type": "OWNER_AUTHORIZE_PLATFORM_ATTESTATION_SIGNING_EVENT",
         "schema_version": "1.0",
-        "event_id": "OWNER-AUTHORIZE-PLATFORM-ATTESTATION-SIGNING-20260721-01",
         "decision_authority": "OWNER",
         "decision": "AUTHORIZE_EXACT_PLATFORM_ATTESTATION_SIGNING",
         "inputs_raw_sha256": _hex(inputs_raw_sha256, "inputs_raw_sha256"),
@@ -206,6 +209,8 @@ def validate_signing_event_v21(
     }
     for field, expected in constants.items():
         _expect(signing, field, expected)
+    if signing["event_id"] not in SIGNING_EVENT_IDS:
+        raise ValueError("event_id mismatch")
     if not COMMIT_SHA.fullmatch(source_commit):
         raise ValueError("source_commit must be a full lowercase Git SHA")
     issued = _time(signing["issued_at"], "issued_at")

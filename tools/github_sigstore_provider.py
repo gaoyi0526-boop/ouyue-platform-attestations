@@ -102,6 +102,7 @@ def validate_predicate_v2(predicate: dict[str, Any], *, now: datetime) -> dateti
             _require_non_empty(predicate[field], field)
     for field in HASH_FIELDS:
         _require_hex(predicate[field], field)
+    _require_hex(predicate['fence_token'], 'fence_token')
     for field in ('lease_generation', 'checkpoint_generation'):
         value = predicate[field]
         if type(value) is not int or value < 0:
