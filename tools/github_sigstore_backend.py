@@ -140,8 +140,8 @@ class GithubCLIBackend:
             try:
                 completed = self.runner(
                     self._command(artifact_path, bundle_path, trusted_root_path),
-                    capture_output=True, text=True, timeout=60, check=False,
-                    shell=False,
+                    capture_output=True, text=True, encoding="utf-8",
+                    timeout=60, check=False, shell=False,
                 )
             except FileNotFoundError as exc:
                 raise BackendUnavailableError("GitHub CLI executable is unavailable") from exc
