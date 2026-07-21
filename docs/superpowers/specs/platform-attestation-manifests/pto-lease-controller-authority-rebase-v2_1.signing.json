@@ -1,0 +1,62 @@
+{
+  "artifact_type": "OWNER_AUTHORIZE_PLATFORM_ATTESTATION_SIGNING_EVENT",
+  "schema_version": "1.0",
+  "event_id": "OWNER-AUTHORIZE-PLATFORM-ATTESTATION-SIGNING-20260721-01",
+  "issued_at": "2026-07-21T12:00:16Z",
+  "valid_until": "2026-07-28T12:00:16Z",
+  "decision_authority": "OWNER",
+  "decision": "AUTHORIZE_EXACT_PLATFORM_ATTESTATION_SIGNING",
+  "owner_source": {
+    "source_type": "CURRENT_THREAD_OWNER_DIRECTIVE",
+    "thread_id": "019f841c-3532-71f0-ad29-c7f043c108e3",
+    "source_text_projection": "授权~你把这些都完成",
+    "source_projection_sha256": "4c1824152c4f69d90cf321c225c4cdc918a6a81cd6521199296bb8d984b71932",
+    "cryptographic_signature_status": "NOT_AVAILABLE"
+  },
+  "causal_owner_event": {
+    "decision_event_id": "G0-FC01-FC06-OWNER-APPROVE-EXACT-CANDIDATE-EVENT-20260719-01",
+    "raw_sha256": "1ef101befb6a6d5770beb318dd78a0baf35b2662b70bf9ee004245e524b022c6"
+  },
+  "fingerprint_approval_event": {
+    "decision_event_id": "G0-FC01-FC06-OWNER-APPROVE-PTO-LEASE-CONTROLLER-FINGERPRINT-20260719-01",
+    "raw_sha256": "f6af77088620e63dd3261fd55abc639bcf6faebb5cdf585294819e6a754fbc5d",
+    "evidence_epoch": "PTO_LEASE_CONTROLLER_CANDIDATE_KEY_EPOCH_20260719_01",
+    "checkpoint_generation": 1
+  },
+  "subject_attestation_request": {
+    "request_id": "G0-FC01-FC06-LEASE-ISSUER-ATTESTATION-REQUEST-20260719-01",
+    "raw_sha256": "4df9bc29d6e200c1d8d92202984ca0336de4c4f6459952de728e399934d25096"
+  },
+  "approved_candidate_identity": {
+    "issuer_role": "PTO_LEASE_CONTROLLER",
+    "thumbprint_sha1": "FF6249EBFF3B242E4F08AA1A7BCA1D3BA47D01CD",
+    "certificate_raw_sha256": "4280e156fd6df78310dbe9844b79d56a2ec67310836f9f72dc9715d34b67a8a0",
+    "public_key_value_sha256": "08f89a550dcaea726a212d80093bcd564f8b0543384f8be141e94b85ed469c07"
+  },
+  "inputs_raw_sha256": "4d680b9f5b12649cfd25b912471192d2d5469ca241d1d99b05a32fad3a714622",
+  "source_commit": "f9d7299c6973c164a02f252e1ea61fa7d985af92",
+  "lease_binding": {
+    "lease_id": "G0-FC01-FC06-AUTHORITY-REBASE-LEASE-20260721-01",
+    "lease_generation": 1,
+    "fence_token": "FENCE-G0-AUTHORITY-REBASE-20260721-01",
+    "run_id": "RUN-G0-AUTHORITY-REBASE-20260721-01",
+    "operation_id": "OP-PLATFORM-ATTEST-PTO-LEASE-CONTROLLER-20260721-01",
+    "idempotency_key": "6896b61b83bd75e1499607b2bbd4887f6196c59190cc06f15e48732325b1200e",
+    "authorized_scope": "AUTHORITY_ONLY_REBASE",
+    "permitted_write_root": "docs/superpowers/specs/g0-f03-through-g0-execution-01-20260719/01_authority_rebase"
+  },
+  "platform_provider": {
+    "repository": "gaoyi0526-boop/ouyue-platform-attestations",
+    "repository_id": 1307678378,
+    "workflow_identity": "gaoyi0526-boop/ouyue-platform-attestations/.github/workflows/platform-lease-attestation.yml",
+    "environment": "platform-attestation-signer",
+    "branch": "refs/heads/main",
+    "platform_identity": "github-actions:1307678378:gaoyi0526-boop/ouyue-platform-attestations/.github/workflows/platform-lease-attestation.yml@refs/heads/main",
+    "sigstore_instance": "public-good"
+  },
+  "signature_count": 1,
+  "billing_plan_status": "BILLING_PLAN_UNSUPPORTED",
+  "formal_attestation_signing_authorized": true,
+  "lease_creation_authorized": false,
+  "state_advance_authorized": false
+}

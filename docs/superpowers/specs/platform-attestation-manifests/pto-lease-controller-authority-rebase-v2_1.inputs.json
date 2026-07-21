@@ -1,0 +1,32 @@
+{
+  "artifact_type": "PTO_LEASE_CONTROLLER_PLATFORM_ATTESTATION_INPUTS",
+  "schema_version": "2.1",
+  "allowed_actions": [
+    "CREATE_PLATFORM_ATTESTATION_FOR_PTO_LEASE_CONTROLLER_IDENTITY"
+  ],
+  "allowed_paths": [
+    "docs/superpowers/specs/g0-f03-through-g0-execution-01-20260719/01_authority_rebase"
+  ],
+  "source_binding": {
+    "repository": "gaoyi0526-boop/ouyue-platform-attestations",
+    "source_commit": "f9d7299c6973c164a02f252e1ea61fa7d985af92",
+    "governed_repository": "gaoyi0526-boop/ouyue-skills",
+    "governed_source_commit": "39ea5ceaf46d8b7c28ca0dc9ebf211128eec8fd2",
+    "causal_owner_decision_event_raw_sha256": "1ef101befb6a6d5770beb318dd78a0baf35b2662b70bf9ee004245e524b022c6",
+    "subject_attestation_request_raw_sha256": "4df9bc29d6e200c1d8d92202984ca0336de4c4f6459952de728e399934d25096",
+    "fingerprint_approval_event_raw_sha256": "f6af77088620e63dd3261fd55abc639bcf6faebb5cdf585294819e6a754fbc5d"
+  },
+  "capability_envelope": {
+    "authorized_scope": "AUTHORITY_ONLY_REBASE",
+    "permitted_write_root": "docs/superpowers/specs/g0-f03-through-g0-execution-01-20260719/01_authority_rebase",
+    "formal_attestation_signing_authorized": true,
+    "lease_creation_authorized": false,
+    "authority_rebase_execution_authorized": false,
+    "registry_activation_authorized": false,
+    "f03_closed": false,
+    "g0_execution_authorized": false,
+    "runtime_authorization": false,
+    "t01_authorized": false,
+    "state_advance_authorized": false
+  }
+}

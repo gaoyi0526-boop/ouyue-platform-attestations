@@ -1,0 +1,83 @@
+name: Platform Lease V2 Predicate Attestation
+
+on:
+  workflow_dispatch:
+    inputs:
+      predicate_path:
+        description: Frozen V2 predicate path under the attestation root
+        required: true
+        type: string
+      predicate_sha256:
+        description: SHA-256 of the predicate Git blob
+        required: true
+        type: string
+      freeze_record_path:
+        description: Frozen signing authorization record path
+        required: true
+        type: string
+      freeze_record_sha256:
+        description: SHA-256 of the freeze record Git blob
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+  attestations: write
+
+concurrency:
+  group: platform-lease-attestation
+  cancel-in-progress: false
+
+jobs:
+  attest-frozen-predicate:
+    if: >-
+      github.repository == 'gaoyi0526-boop/ouyue-platform-attestations' &&
+      github.ref == 'refs/heads/main'
+    environment: platform-attestation-signer
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the exact signer commit
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Validate frozen predicate and control record
+        shell: bash
+        env:
+          PREDICATE_PATH: ${{ inputs.predicate_path }}
+          PREDICATE_SHA256: ${{ inputs.predicate_sha256 }}
+          FREEZE_RECORD_PATH: ${{ inputs.freeze_record_path }}
+          FREEZE_RECORD_SHA256: ${{ inputs.freeze_record_sha256 }}
+          EXPECTED_REPOSITORY: ${{ github.repository }}
+          EXPECTED_REPOSITORY_ID: ${{ github.repository_id }}
+          SIGNER_COMMIT: ${{ github.sha }}
+          WORKFLOW_IDENTITY: ${{ github.repository }}/.github/workflows/platform-lease-attestation.yml
+        run: |
+          set -euo pipefail
+          receipt="$RUNNER_TEMP/platform-pre-sign-receipt.json"
+          python tools/github_sigstore_cli.py validate-pre-sign \
+            --repo-root "$GITHUB_WORKSPACE" \
+            --predicate "$PREDICATE_PATH" \
+            --predicate-sha256 "$PREDICATE_SHA256" \
+            --freeze-record "$FREEZE_RECORD_PATH" \
+            --freeze-record-sha256 "$FREEZE_RECORD_SHA256" \
+            --repository "$EXPECTED_REPOSITORY" \
+            --repository-id "$EXPECTED_REPOSITORY_ID" \
+            --signer-commit "$SIGNER_COMMIT" \
+            --workflow-identity "$WORKFLOW_IDENTITY" > "$receipt"
+          cat "$receipt"
+          SOURCE_COMMIT="$(python -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["source_commit"])' "$receipt")"
+          if [[ ! "$SOURCE_COMMIT" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "Invalid source commit in pre-sign receipt" >&2
+            exit 1
+          fi
+          git merge-base --is-ancestor "$SOURCE_COMMIT" "$SIGNER_COMMIT"
+
+      - name: Attest the frozen predicate digest
+        uses: actions/attest@f7c74d28b9d84cb8768d0b8ca14a4bac6ef463e6 # v4.2.0
+        with:
+          subject-path: ${{ inputs.predicate_path }}
