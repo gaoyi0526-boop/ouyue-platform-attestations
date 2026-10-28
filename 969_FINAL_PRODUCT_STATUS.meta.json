@@ -1,0 +1,14 @@
+{
+  "start_utc": "2026-10-28T12:03:06.719080+00:00",
+  "end_utc": "2026-10-28T12:03:06.771867+00:00",
+  "argv": [
+    "git",
+    "-C",
+    "D:\\DOT工作区\\千川投流分析\\资料整理交付_20261024\\_repos\\qianchuan",
+    "status",
+    "--porcelain=v1",
+    "-z"
+  ],
+  "exit_code": 0,
+  "timed_out": false
+}
